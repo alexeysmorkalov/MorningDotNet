@@ -26,14 +26,13 @@ namespace Code.Test
 
             while (beginGeneration <= endGeneration)
             {
-                int newEndGen = endGeneration;
-                for (int i = beginGeneration; i <= endGeneration; i++)
+                int endOfTraverse = endGeneration;
+                for (int i = beginGeneration; i <= endOfTraverse; i++)
                 {
                     family.AddRange(family[i].Children);
-                    newEndGen += family[i].Children.Count;
+                    endGeneration += family[i].Children.Count;
                 }
-                beginGeneration = endGeneration + 1;
-                endGeneration = newEndGen;
+                beginGeneration = endOfTraverse + 1;
             }
             return family;
         }
