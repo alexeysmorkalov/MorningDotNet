@@ -26,7 +26,8 @@ namespace Code.Test
         public void CheckSpaces(string value, bool expected)
         {
             // Act
-            var res = value.CheckSpaces();
+            //var res = value.CheckSpaces();
+            var res = value.CheckSpaces2();
             // Assert
             Assert.AreEqual(expected, res);
         }
@@ -47,6 +48,27 @@ namespace Code.Test
             }
             return lastChar != ' ';
         }
+
+        public static bool CheckSpaces2(this string value)
+        {
+            var prevChar = ' ';
+            bool res = true;
+            value.ToCharArray().ForEach(c => {
+                if (c == ' ' && prevChar == ' ')
+                    res = false;
+                prevChar = c;
+            });
+            return res && (value == "" || prevChar != ' ');
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> array, Action<T> action)
+        {
+            foreach (var value in array)
+            {
+                action(value);
+            }
+        }
+
     }
 
 }
